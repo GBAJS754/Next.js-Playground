@@ -1,35 +1,45 @@
-/* eslint-disable @next/next/no-img-element */
-import { Inter } from "next/font/google";
 import useEmblaCarousel from "embla-carousel-react";
-const inter = Inter({ subsets: ["latin"] });
+import { useEffect, useState } from "react";
+import Modal from "@/comnponent/Modal";
 
 export default function Home() {
-  const [emblaRef] = useEmblaCarousel();
+  const [isOpen, setIsOpen] = useState(false);
+  const [emblaRef, emblaApi] = useEmblaCarousel();
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi?.selectedScrollSnap());
+  }, [emblaApi]);
 
   return (
-    <div className="embla" ref={emblaRef}>
-      <div
-        className="embla__container"
-        onClick={() => {
-          console.log("클릭");
-        }}
-      >
-        <img
-          src="http://placeholder.com/640x480"
-          alt=""
-          className="embla__slide"
-        />
-        <img
-          src="http://placeholder.com/640x480"
-          alt=""
-          className="embla__slide"
-        />{" "}
-        <img
-          src="http://placeholder.com/640x480"
-          alt=""
-          className="embla__slide"
-        />
+    <>
+      <div className="embla" ref={emblaRef}>
+        <div
+          className="embla__container"
+          onClick={() => {
+            setIsOpen(true);
+          }}
+        >
+          <img
+            src="http://placeholder.com/640x480"
+            alt=""
+            className="embla__slide"
+          />
+
+          <img
+            src="http://placeholder.com/640x480"
+            alt=""
+            className="embla__slide"
+          />
+          <img
+            src="http://placeholder.com/640x480"
+            alt=""
+            className="embla__slide"
+          />
+        </div>
       </div>
-    </div>
+      <Modal isOpen={isOpen} selectedIndex={selectedIndex}></Modal>
+    </>
   );
 }

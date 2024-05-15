@@ -8,3 +8,12 @@
   flex: 0 0 100%; /* Slide covers 50% of the viewport */
   min-width: 0;
 }
+
+.modal {
+  width: 100%;
+  height: 100%;
+  background-color: wheat;
+  display: flex;
+  position: fixed;
+  top: 0;
+}
