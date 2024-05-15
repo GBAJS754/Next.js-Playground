@@ -1,34 +1,20 @@
 import useEmblaCarousel from "embla-carousel-react";
+import React, { ReactNode } from "react";
 
 type ModalProps = {
   isOpen: boolean;
   selectedIndex: number;
+  slides: ReactNode[];
 };
 
-const Modal = ({ isOpen, selectedIndex }: ModalProps) => {
+const Modal = ({ isOpen, selectedIndex, slides }: ModalProps) => {
   const [emblaRef] = useEmblaCarousel({ startIndex: selectedIndex });
 
   return (
     isOpen && (
       <div className="modal">
         <div className="embla" ref={emblaRef}>
-          <div className="embla__container">
-            <img
-              src="http://placeholder.com/640x480"
-              alt=""
-              className="embla__slide"
-            />
-            <img
-              src="http://placeholder.com/640x480"
-              alt=""
-              className="embla__slide"
-            />
-            <img
-              src="http://placeholder.com/640x480"
-              alt=""
-              className="embla__slide"
-            />
-          </div>
+          <div className="embla__container">{slides}</div>
         </div>
       </div>
     )
