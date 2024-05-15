@@ -9,7 +9,7 @@ type ModalProps = {
 
 const Modal = ({ isOpen, selectedIndex, slides }: ModalProps) => {
   const [emblaRef] = useEmblaCarousel({ startIndex: selectedIndex });
-
+  console.log("test");
   return (
     isOpen && (
       <div className="modal">
