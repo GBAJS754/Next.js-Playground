@@ -15,8 +15,10 @@ export default function HomePage({ message }: PageProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const apiUrl = process.env.API_URL;
+
   try {
-    const res = await fetch("http://localhost:3000/api/forbidden");
+    const res = await fetch(`${apiUrl}/status/403`);
 
     if (res.status === 403) {
       return {
