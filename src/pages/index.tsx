@@ -21,9 +21,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     if (res.status === 403) {
       return {
         props: {
-          message: "403 Error fetching data",
+          message: "403 Error: Forbidden",
         },
       };
+    }
+
+    if (!res.ok) {
+      throw new Error(`Unexpected status code: ${res.status}`);
     }
 
     const data = await res.json();
